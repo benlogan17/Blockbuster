@@ -24,17 +24,12 @@ public class Cheaker {
         			return true;
         		}
     		}
-    		
-    		System.out.println("____________________________");
     	}
-    	System.out.println("");
     	return false;
     }
     
     
     public boolean checkWinner(HBox columns, int[] indexs, int colNum, Color checkCol) {
-    	System.out.println("Start Index " + indexs[0]);
-    	System.out.println("Col " + colNum);
     	if(colNum == numCol) {
     		return true;
     	}
@@ -76,66 +71,6 @@ public class Cheaker {
     		return false;
     	}
     	
-    }
-    
-    
-    private boolean checkWinnerHorizontalRepeat( HBox columns, int startIndex, int colNum, Color checkCol ) {
-    	System.out.println("Start Index  " + startIndex);
-    	System.out.println("Column number " + colNum);
-    	if ( colNum == numCol ) {
-    		return true;
-    	}
-    	else if ( startIndex > numCol ) {
-    		return false;
-    	}
-    	else {
-    		VBox column = (VBox)(columns.getChildren().get( colNum ));
-    		
-    		Polygon poly1 = null;
-    		Polygon poly2 = null;
-    		if ( ( startIndex == 3 && colNum % 2 == 1 ) || ( startIndex == 0 && colNum % 2 == 1 ) ) {
-    			poly1 = (Polygon)((StackPane)column.getChildren().get( startIndex )).getChildren().get( 0 );
-    			if ( poly1.getFill().toString().equals( checkCol.toString() ) ) {
-    				if( startIndex == 3 ) {
-    					return checkWinnerHorizontalRepeat( columns, startIndex - 1 , colNum + 1, checkCol );
-    				}
-//    				else if(startIndex == 0 && colNum % 2 == 1) {
-//    					
-//    				}
-    				else {
-    					return checkWinnerHorizontalRepeat( columns, startIndex , colNum + 1, checkCol );
-    				}
-    				
-    			}
-    		}
-    		else {
-    			poly1 = (Polygon)((StackPane)column.getChildren().get( startIndex )).getChildren().get( 0 );
-    			poly2 = (Polygon)((StackPane)column.getChildren().get( startIndex + 1 )).getChildren().get( 0 );
-    			if ( poly1.getFill().toString().equals( checkCol.toString() ) ){
-    				System.out.println("First");
-    				return checkWinnerHorizontalRepeat( columns, startIndex ,colNum + 1, checkCol ); 
-    			}
-    			else if( poly2.getFill().toString().equals( checkCol.toString() ) ) {
-    				if( ( startIndex == 0 && colNum % 2 == 0  ) || colNum % 2 ==1) {
-    					System.out.println("none");
-    					return checkWinnerHorizontalRepeat( columns, startIndex ,colNum + 1, checkCol );
-    				}
-//    				else if( colNum % 2 == 0 ) {
-//    					System.out.println("minus  1");
-//    					return checkWinnerHorizontalRepeat( columns, startIndex - 1 ,colNum + 1, checkCol );
-//    				}
-    				else {
-    					System.out.println("add 1");
-    					return checkWinnerHorizontalRepeat( columns, startIndex + 1 ,colNum + 1, checkCol ); 				
-    				}
-    			}
-    			else {
-    				return false;
-    			}
-    		}
-    		}
-    	//}
-    	return false;
     }
     
     public boolean checkWinnerVertical( HBox columns, int colNum, Color checkCol ) {
